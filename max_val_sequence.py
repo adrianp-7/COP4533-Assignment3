@@ -47,5 +47,26 @@ def max_value_subsequence():
     subsequence = []
     i, j = m, n
 
+    while i > 0 and j > 0:
+        if A[i - 1] == B[j - 1]:
+            # Characters match: this character is in the optimal subsequence
+            subsequence.append(A[i - 1])
+            i -= 1
+            j -= 1
+        else:
+            # Characters don't match: determine which way we came from
+            # We came from the direction that had the greater value
+            if dp[i - 1][j] > dp[i][j - 1]:
+                i -= 1
+            else:
+                j -= 1
+
+    # Reverse the subsequence since we built it backwards
+    subsequence.reverse()
+
+    # Output results
+    print(max_value)
+    print(''.join(subsequence))
+
 if __name__ == "__main__":
     max_value_subsequence()
