@@ -24,6 +24,9 @@ def max_value_subsequence():
 
     m, n = len(A), len(B)
 
+    # Initialize DP table: dp[i][j] = max value of common subsequence of A[0:i] and B[0:j]
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
 
 if __name__ == "__main__":
     max_value_subsequence()
