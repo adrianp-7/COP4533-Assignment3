@@ -40,6 +40,12 @@ def max_value_subsequence():
                 # Case 2: exclude B[j-1] -> look at dp[i][j-1]
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
 
+    # The max value is at dp[m][n]
+    max_value = dp[m][n]
+
+    # Reconstruct the optimal subsequence by backtracking
+    subsequence = []
+    i, j = m, n
 
 if __name__ == "__main__":
     max_value_subsequence()
