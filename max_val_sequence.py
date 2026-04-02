@@ -27,6 +27,19 @@ def max_value_subsequence():
     # Initialize DP table: dp[i][j] = max value of common subsequence of A[0:i] and B[0:j]
     dp = [[0] * (n + 1) for _ in range(m + 1)]
 
+    # Fill the table
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if A[i - 1] == B[j - 1]:
+                # Characters match: include this character in the subsequence
+                char = A[i - 1]
+                dp[i][j] = dp[i - 1][j - 1] + char_values[char]
+            else:
+                # Characters don't match: take maximum of two options
+                # Case 1: exclude A[i-1] -> look at dp[i-1][j]
+                # Case 2: exclude B[j-1] -> look at dp[i][j-1]
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
 
 if __name__ == "__main__":
     max_value_subsequence()
